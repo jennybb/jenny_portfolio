@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MORE ABOUT ME on Jianing Cao</title>
+    <link>https://jennybb.github.io/jenny_portfolio/about/</link>
+    <description>Recent content in MORE ABOUT ME on Jianing Cao</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jennybb.github.io/jenny_portfolio/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WORK EXPERIENCE</title>
+      <link>https://jennybb.github.io/jenny_portfolio/about/wise/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/about/wise/</guid>
+      <description>Time: Sep 2020 - Dec 2020
+Company: WISE Women&amp;rsquo;s Business Center
+Location: Syracuse, NY, United States
+Title: Data Analyst Intern
+
+
+•	Unified data format and cleaned missing values of company historical client’s data through python MICE package
+•	Provided summarization metrics of current female-owned small businesses to make data-driven suggestions for industries such as retail and healthcare with the purpose of finding customers and locations in potential industries</description>
+    </item>
+    
+    <item>
+      <title>COOKING</title>
+      <link>https://jennybb.github.io/jenny_portfolio/about/cooking/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/about/cooking/</guid>
+      <description>For cooking, I&amp;rsquo;m willing to try, taste, and feel. It brings different colors and flavors to me every day.
+
+
+                          </description>
+    </item>
+    
+    <item>
+      <title>PHOTOGRAPHY</title>
+      <link>https://jennybb.github.io/jenny_portfolio/about/photograph/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/about/photograph/</guid>
+      <description>“To me, photography is an art of observation. It’s about finding something interesting an ordinary place… I’ve found it has little to do with the things you see and everything to do with the way you see them.”
+— Elliott Erwitt
+
+
+                                      </description>
+    </item>
+    
+  </channel>
+</rss>

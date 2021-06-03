@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PROJECTS on Jianing Cao</title>
+    <link>https://jennybb.github.io/jenny_portfolio/post/</link>
+    <description>Recent content in PROJECTS on Jianing Cao</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Dec 2020 12:00:00 -0500</lastBuildDate><atom:link href="https://jennybb.github.io/jenny_portfolio/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Telco Customer Churn</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/telco-customer-churn/</link>
+      <pubDate>Sun, 06 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/telco-customer-churn/</guid>
+      <description>Customer churn has been an important topic in the telecom industry because it directly affects company’s profitability. Churn describes that customers stop using a company’s product or service during a certain time frame. Considering that the cost of retaining an existing customer is much lower than the cost of acquiring a new customer, telecom companies often provide competitive offers to customers who tend to churn. The object of this project is to help telecom companies predict whether a customer will churn or will not churn.</description>
+    </item>
+    
+    <item>
+      <title>Job Market Analysis based on Handshake and Indeed</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/job-market-analysis-based-on-handshake-and-indeed/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/job-market-analysis-based-on-handshake-and-indeed/</guid>
+      <description>Securing a job is one of the most challenging parts of a student’s life. For students with limited work experience, they are often unclear about what skills they should develop throughout their academic careers, what experiences they should highlight on their resumes, and which areas will offer them better chances to land a job. Through this project, we aim to answer the above questions and ultimately help students to locate the right career and to formulate effective career development plans.</description>
+    </item>
+    
+    <item>
+      <title>2020 Election Sentiment Analysis</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/2020-election-sentiment-analysis/</link>
+      <pubDate>Sun, 29 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/2020-election-sentiment-analysis/</guid>
+      <description>Social media has played an integral role in presidential elections since 2016; with the advent of Cambridge Analytica and nuanced psycho-political campaigning tactics. Twitter can be seen as a platform for candidates and users to gain substantial outreach in order to showcase their views to the world. Thus it is important to analyze and understand the role Twitter can play in gauging sentiment surrounding hot button issues that voters use in deciding which candidate is fit for leading the United States for the next four to eight years.</description>
+    </item>
+    
+    <item>
+      <title>Weather Prediction</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/weather-prediction/</link>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/weather-prediction/</guid>
+      <description>The aim of this project is to compare different weather forecast models. Since our taget is whether this place will rain tomorrow, tt is a binary classification problem. We will use unsupervised learning Kmeans and Hierarchical Agglomerative Clustering and supervised learbubg Decision Tree and Random Forest. The complete code can be find on my GitHub page https://github.com/jennybb/Weather-Prediction.
+ Dataset: This dataset contains daily weather observations from many locations across Australia. RainTomorrow is the target variable to predict.</description>
+    </item>
+    
+    <item>
+      <title>Disease Diagnosis Model</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/disease-diagnosis-model/</link>
+      <pubDate>Thu, 01 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/disease-diagnosis-model/</guid>
+      <description>This project is going to use multiple machine learning algorithms, including naive Bayes classifier, K Nearest Neighbor, Support Vector Machine ( with both linear and n on-linear kernel functions), Random Forest and Gradient Boosting Classifier, logistic regression, multiple artificial neural networks and deep learning models with different architectures to build disease diagnosis models. It is a binary classification problem to predict whether or not a patient has a certain unspecified disease.</description>
+    </item>
+    
+    <item>
+      <title>Blockchain Virtual Escape Room</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/virtual-escape-room/</link>
+      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/virtual-escape-room/</guid>
+      <description>This virtual escape room is going to help students and who is interested in blockchain to know more about it.</description>
+    </item>
+    
+    <item>
+      <title>Clothing Classification Data Management System</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/clothing-classification-data-management-system/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/clothing-classification-data-management-system/</guid>
+      <description>This project is aimed to use Microsoft SQL Server combined with Access to build a clothing classification data management system. Since no matter man or woman, they all have many kinds of clothes in their closet, and their closet is a mess in most situations. Every family member may have clothes like the suit for a business occasion, the casual shirt for holidays or other special occasions. Not only for adults who have to go to work appropriately dressed, but also for teenagers who want to publicize their personality through clothing, and especially for busy housewives/ househusbands who have the responsibility to take care of all family members, chaotic and disorderly clothing is always a huge problem which lowers the sense of happiness.</description>
+    </item>
+    
+    <item>
+      <title>Southeast Airlines Customer Satisfaction Survey Analysis</title>
+      <link>https://jennybb.github.io/jenny_portfolio/post/southern-airline/</link>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jennybb.github.io/jenny_portfolio/post/southern-airline/</guid>
+      <description>The project is based on customer survey results for Southeast Airlines and seeks to raise the Likelihood to Recommend score of the airline. The project dataset includes 10,282 observations and 32 variables. Primary goal is to increase NPS score using various attributes provided by the airlines and understand what features translate most towards gaining better recommendation scores. Additionally, we provide actionable data-driven recommendations to increase the Likelihood to Recommend, based on our findings.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Telco Customer Churn | Jianing Cao</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Python | Machine Learning | Web Application ">
+    <meta name="generator" content="Hugo 0.79.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://jennybb.github.io/jenny_portfolio/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Telco Customer Churn" />
+<meta property="og:description" content="Python | Machine Learning | Web Application " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jennybb.github.io/jenny_portfolio/post/telco-customer-churn/" />
+<meta property="article:published_time" content="2020-12-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-06T00:00:00+00:00" />
+<meta itemprop="name" content="Telco Customer Churn">
+<meta itemprop="description" content="Python | Machine Learning | Web Application ">
+<meta itemprop="datePublished" content="2020-12-06T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-12-06T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1410">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Telco Customer Churn"/>
+<meta name="twitter:description" content="Python | Machine Learning | Web Application "/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://jennybb.github.io/jenny_portfolio/images/tel_1.png');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://jennybb.github.io/jenny_portfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Jianing Cao
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/contact/" title="CONTACT page">
+              CONTACT
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/about/" title="MORE ABOUT ME page">
+              MORE ABOUT ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/post/" title="PROJECTS page">
+              PROJECTS
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+<a href="https://www.instagram.com/jenny_cao__/" target="_blank" class="link-transition instagram link dib z-999 pt3 pt0-l mr1" title="Instagram link" rel="noopener" aria-label="follow on Instagram——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.linkedin.com/in/jianing-cao" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/jennybb" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Telco Customer Churn</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Python | Machine Learning | Web Application 
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw9 center ph6">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+  
+
+
+      <h1 class="f1 athelas mt3 mb1">Telco Customer Churn</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-12-06T00:00:00Z">December 6, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-three-thirds-l"><p>Customer churn has been an important topic in the telecom industry because it directly affects company’s profitability. Churn describes that customers stop using a company’s product or service during a certain time frame. Considering that the cost of retaining an existing customer is much lower than the cost of acquiring a new customer, telecom companies often provide competitive offers to customers who tend to churn. The object of this project is to help telecom companies predict whether a customer will churn or will not churn.</p>
+<p>In this report, will mainly discuss three machine learning algorithms: Random Forest, Logistic Regression, Gradient Boosting Machine (GBM). For the full analysis and code, you can visit my GitHub repository here: <a href="https://github.com/jennybb/Telecom-Churn-Prediction">https://github.com/jennybb/Telecom-Churn-Prediction</a>. And I also made an interactive web application: <a href="https://jc-project-1.herokuapp.com/">https://jc-project-1.herokuapp.com/</a>.<br />
+<br></br></p>
+<h3 id="poster">Poster</h3>
+<figure>
+    <img src="https://i.ibb.co/GJRT0tj/Screen-Shot-2020-12-21-at-1-21-05-AM.png"/> 
+</figure>
+
+<p><br></br></p>
+<h3 id="web-application">Web Application</h3>
+<p>You can also visit: <a href="https://jc-project-1.herokuapp.com/">https://jc-project-1.herokuapp.com/</a> for better view.</p>
+<iframe src="https://jc-project-1.herokuapp.com/" frameborder="0" width="1100" height="650" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h3 id="abstract">Abstract:</h3>
+<p>This project aims to predict whether a telecom customer will churn so that telecom companies can take actions to retrain their customers. We are using the telecom customer churn data originally provided by the IBM Watson Analytics and available in Kaggle. We applied three types of mining algorithms, classification, regression, and clustering to this binary classification problem. The specific models we used are  random forest, gradient boosting machine, logistic regression and K-Nearest Neighbors.</p>
+<h3 id="dataset">Dataset:</h3>
+<p>Downloaded from Kaggle, the telecom customer churn dataset contains 7043 rows (customers) and 21 columns (features). Each row represents a customer and includes information about customers who left within the last month, services that each customer has signed up for such as phone, multiple lines, internet, online security, online backup, device protection, tech support, and streaming TV and movies. It also includes demographic info about customers such as gender, age range, and if they have partners and dependents. The target column is “Churn” which has binary values, ‘Yes’ or ‘No’.</p>
+<p>This plot shows us the correlation between our target and other features. We can see that the “Contract Month to Month”, “Online Security_No” and” Tech Support_No” have strong positive correlations with our target column. It means a consumer having a month-to-month contract with the company, not signing up for online security or not signing up for tech support, are more likely to leave. However, the correlation plot also tells us if a Consumer has a tenure, they are less likely to leave the company. Because there is a strong negative correlation between the tenure feature and the target column. The correlation plot also reminds us, if the company wants to have more customers stay, they should pay more attention to those who have month-to-month contracts, not signing up for online security or not signing up for tech support. For example, the company can offer some discounts or reimbursement.</p>
+<figure>
+    <img src="https://i.ibb.co/zQKrY0p/Screen-Shot-2020-12-17-at-2-36-41-PM.png" width="0"/> 
+</figure>
+
+<h3 id="exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</h3>
+<ul>
+<li><b>Target column</b></li>
+</ul>
+<p>In our data, 73.4% of the customers do not churn. Clearly the data is skewed as we expect a large majority of the customers not to churn. It’s important to keep in mind especially in the modelling as skewness could lead to a lot of false negatives. We will discuss how to avoid data skewness in the modelling section.</p>
+<figure>
+    <img src="https://i.ibb.co/mtVRNpm/Screen-Shot-2020-12-17-at-10-37-26-PM.png"/> 
+</figure>
+
+<ul>
+<li><b>Monthly payment &amp; Total payment</b></li>
+</ul>
+<p>We  generated the histograms of Monthly payment &amp; Total payment. It’s really interesting to see customers with high monthly payment or low total payment are likely to leave the company. We speculate that those who pay a high monthly rate would consider cutting off their monthly expenses by canceling the telco services. However, those who have high total payment are loyalty customers.</p>
+<figure>
+    <img src="https://i.ibb.co/98rZnVY/Screen-Shot-2020-12-17-at-2-45-21-PM.png"/> 
+</figure>
+
+<ul>
+<li><b>Other Features</b></li>
+</ul>
+<p>We randomly picked some features to explore their distribution and we are using the Gender Distribution plot as an example here. Blue bar is for churn while red bar is for non-churn.The female blue bar and the male blue bar have similar height, which means gender doesn&rsquo;t have much impact on our target. This is  consistent with the correlation plot above</p>
+<figure>
+    <img src="https://i.ibb.co/3yF27v3/Screen-Shot-2020-12-17-at-10-45-42-PM.png"/> 
+</figure>
+
+<h3 id="machine-learning-methods">Machine Learning Methods</h3>
+<h4 id="1-random-forest">1. Random Forest</h4>
+<p>Random forest is an ensemble of decision tree algorithms. It is an extension of bootstrap aggregation (bagging) of decision trees and can be used for regression and classification problems. Random forest tries to remove correlation by randomly sampling training data columns at each split point. Therefore, each tree uses different feature subsets for the prediction.</p>
+<p>Here we selected six parameters for model tuning: n_estimators=10, max_depth=7, max_features=’auto’, min_samples_split=5, min_samples_leaf=2, and bootstrap=False.</p>
+<figure>
+    <img src="https://i.ibb.co/fvFZFbw/Screen-Shot-2020-12-17-at-5-12-16-PM.png"/> 
+</figure>
+
+<p>Tenure, total charges and monthly charges are necessary predictors. Tenure means a customer is tenure for how long. This is obvious to see, when a customer is tenure for a long time may mean he would like to spend more time on this platform, which is the same as the charges. A customer is more willing to pay for the platform, he will be more willing to stay. Also, monthly charges and total charges are two related features, it’s not surprising to see they are both in the top predictors list. For other top predictors, we can see, customers who have no technical support, no online security and who prefer using checks for payment are more likely to stay.</p>
+<h4 id="2-gradient-boosting-machine-gbm">2. Gradient Boosting Machine (GBM)</h4>
+<p>Gradient Boosting is an ensemble machine learning technique that can also be used for classification. The ensemble approach relies on combining a large number of relatively weak simple models to obtain a stronger ensemble prediction. In gradient boosting machines (GBM), the learning procedure consecutively fits new models to provide a more accurate estimate of the response variable.</p>
+<p>In total, we have tuned five parameters. The best parameters set we have are “learning_rate = 0.08”, “loss = deviance”, “max_depth = 2”, “n_eistimator = 110” and “subsample = 0.5”.</p>
+<figure>
+    <img src="https://i.ibb.co/vDsjZQr/Screen-Shot-2020-12-17-at-5-22-14-PM.png"/> 
+</figure>
+
+<p>The three most important features obtained from the GBM are “Contract month to month”, “tenure”, and “Internet Service Fiber Optic”. Compared to the feature importance obtained from the Random Forest model, “tenure” is still among the top 3. The other two features are more important in the GBM than in RF. For users who have month to month contracts, they have better mobility than those who have a fixed term contract with telecom companies. For this group of users, they don’t have to worry about the consequences of breaking a contract when they make decisions to leave companies.</p>
+<h4 id="3-logistic-regression">3. Logistic Regression</h4>
+<p>Logistic Regression is a Machine Learning algorithm which is used for classification problems, it is a predictive analysis algorithm and based on the concept of probability. Similar to the linear SVM model, there are also two important hyper parameters in the Logistic Regression model, which are ‘C’ and ‘penalty’. During the hyper parameter tuning, the best result we got is C=6.15, penalty is l2.</p>
+<p><figure>
+    <img src="https://i.ibb.co/WBtnZVw/Screen-Shot-2020-12-17-at-5-26-47-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/nwrGXCM/Screen-Shot-2020-12-17-at-5-27-47-PM.png"/> 
+</figure>
+</p>
+<p>Here we will be focus on the abosulate value of features' weight. The result here is quite similar to Random Forest&rsquo;s result. It seems like &ldquo;Tenure&rdquo;, &ldquo;Monthly Charges&rdquo; and &ldquo;Total Charges&rdquo; feautres are the top 3 important predictors.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>We generated a model performance master table that includes all the algorithms we applied to our data. We used five consistent model performance evaluation methods (i.e. use 10 fold cross validation to get the prediction accuracy). The table is sorted in the decreasing order of the model performance for the ROC_AUC Score metric. For model comparison, we decided to use AUC Score as the key primary metric. The reason is that AUC measures how well a parameter can distinguish between two diagnostic groups, which is the same as our goal: we want to ensure that the two target labels are separable.</p>
+<figure>
+    <img src="https://i.ibb.co/Swk53rp/Screen-Shot-2020-12-17-at-5-53-59-PM.png"/> 
+</figure>
+
+<p>Using F1-scores as the key evaluation metrics, the rankings of our machine learning models are: Logistic Regression (59.94%),  Gradient Boosting Machine (59.40%), Linear SVM (58.40%), Random Forest (55.87%), and K-Nearest Neighbor (47.76%).</p>
+<h3 id="references">References</h3>
+<ul>
+<li>
+<p>Brownlee, Jason. “How to Grid Search Hyperparameters for Deep Learning Models in Python With Keras.” Machine Learning Mastery, 27 Aug. 2020, machinelearningmastery.com/grid-search-hyperparameters-deep-learning-models-python-keras/.</p>
+</li>
+<li>
+<p>Pant, Ayush. “Introduction to Logistic Regression.” Medium, Towards Data Science, 22 Jan. 2019, towardsdatascience.com/introduction-to-logistic-regression-66248243c148.</p>
+</li>
+<li>
+<p>Pupale, Rushikesh. “Support Vector Machines(SVM) - An Overview.” Medium, Towards Data Science, 11 Feb. 2019, towardsdatascience.com/https-medium-com-pupalerushikesh-svm-f4b42800e989.</p>
+</li>
+<li>
+<p>Brownlee, Jason. “A Gentle Introduction to the Gradient Boosting Algorithm for Machine Learning.” Machine Learning Mastery, 14 Aug. 2020, machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/.</p>
+</li>
+<li>
+<p>Natekin, Alexey, and Alois Knoll. “Gradient Boosting Machines, a Tutorial.” Frontiers, Frontiers, 21 Oct. 2013, <a href="http://www.frontiersin.org/articles/10.3389/fnbot.2013.00021/full">www.frontiersin.org/articles/10.3389/fnbot.2013.00021/full</a>.</p>
+</li>
+<li>
+<p>Rout, Amiya Ranjan. “Advantages and Disadvantages of Logistic Regression.” GeeksforGeeks, 2 Sept. 2020, <a href="http://www.geeksforgeeks.org/advantages-and-disadvantages-of-logistic-regression/">www.geeksforgeeks.org/advantages-and-disadvantages-of-logistic-regression/</a>.</p>
+</li>
+<li>
+<p>W.d. “Why Do So Many Practicing Data Scientists Not Understand Logistic Regression?” r y x, r, 28 June 2020, ryxcommar.com/2020/06/27/why-do-so-many-practicing-data-scientists-not-understand-logistic-regression/.<br />
+Brownlee, Jason. “How to Develop a Random Forest Ensemble in Python.” Machine Learning Mastery, 7 Sept. 2020, machinelearningmastery.com/random-forest-ensemble-in-python/.</p>
+</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://jennybb.github.io/jenny_portfolio" >
+    &copy;  Jianing Cao 2021 
+  </a>
+    <div>
+
+
+
+
+
+<a href="https://www.instagram.com/jenny_cao__/" target="_blank" class="link-transition instagram link dib z-999 pt3 pt0-l mr1" title="Instagram link" rel="noopener" aria-label="follow on Instagram——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.linkedin.com/in/jianing-cao" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/jennybb" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://jennybb.github.io/jenny_portfolio/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

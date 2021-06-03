@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Job Market Analysis based on Handshake and Indeed | Jianing Cao</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Python | Webscraping | Pandas | NLP">
+    <meta name="generator" content="Hugo 0.79.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://jennybb.github.io/jenny_portfolio/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Job Market Analysis based on Handshake and Indeed" />
+<meta property="og:description" content="Python | Webscraping | Pandas | NLP" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jennybb.github.io/jenny_portfolio/post/job-market-analysis-based-on-handshake-and-indeed/" />
+<meta property="article:published_time" content="2020-11-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-30T00:00:00+00:00" />
+<meta itemprop="name" content="Job Market Analysis based on Handshake and Indeed">
+<meta itemprop="description" content="Python | Webscraping | Pandas | NLP">
+<meta itemprop="datePublished" content="2020-11-30T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-30T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1253">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Job Market Analysis based on Handshake and Indeed"/>
+<meta name="twitter:description" content="Python | Webscraping | Pandas | NLP"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://i.ibb.co/1bYRsdK/Wechat-IMG99.jpg');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://jennybb.github.io/jenny_portfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Jianing Cao
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/contact/" title="CONTACT page">
+              CONTACT
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/about/" title="MORE ABOUT ME page">
+              MORE ABOUT ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/post/" title="PROJECTS page">
+              PROJECTS
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+<a href="https://www.instagram.com/jenny_cao__/" target="_blank" class="link-transition instagram link dib z-999 pt3 pt0-l mr1" title="Instagram link" rel="noopener" aria-label="follow on Instagram——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.linkedin.com/in/jianing-cao" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/jennybb" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Job Market Analysis based on Handshake and Indeed</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Python | Webscraping | Pandas | NLP
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw9 center ph6">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+  
+
+
+      <h1 class="f1 athelas mt3 mb1">Job Market Analysis based on Handshake and Indeed</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-11-30T00:00:00Z">November 30, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-three-thirds-l"><p>Securing a job is one of the most challenging parts of a student’s life. For students with limited work experience, they are often unclear about what skills they should develop throughout their academic careers, what experiences they should highlight on their resumes, and which areas will offer them better chances to land a job. Through this project, we aim to answer the above questions and ultimately help students to locate the right career and to formulate effective career development plans. You can visit my GitHub to see the whole code: <a href="https://github.com/jennybb/webscraping-and-analysis-Indeed">https://github.com/jennybb/webscraping-and-analysis-Indeed</a>. And I also made a dashboard on Tableau: <a href="https://public.tableau.com/profile/jenny.cao#!/vizhome/IndeedJobAnalysis/JobAnalysis">https://public.tableau.com/profile/jenny.cao#!/vizhome/IndeedJobAnalysis/JobAnalysis</a></p>
+<p>And you can also explore the Tableau dashboard here 😜</p>
+<div class='tableauPlaceholder' id='viz1608408192279' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;In&#47;IndeedJobAnalysis&#47;JobAnalysis&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='IndeedJobAnalysis&#47;JobAnalysis' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;In&#47;IndeedJobAnalysis&#47;JobAnalysis&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1608408192279');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='1200px';vizElement.style.height='900px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+<h3 id="abstract">Abstract:</h3>
+<p>This project aims to help students major in Applied Data Science and Business Analytics in making an accurate career plan and goal and writing informative resumes by providing them answers to what skills they should develop throughout their academic careers, what experiences they should highlight on their resumes, and which areas will offer them better chances to land a job.</p>
+<p>The two main collections of datasets contain targeted job search information. The first collection has job information posted on the Handshake website between mid-February and early-April. The second collection has web scraped datasets from the Indeed website in mid-April. Since two data collections have very different features and can be complementary to each other, we will do two separate analyses. In the end, by integrating the analysis results of the two data sets, we aim to reach a relatively comprehensive conclusion.</p>
+<h3 id="dataset">Dataset:</h3>
+<p>The handshake dataset consolidates Handshake job data from five excel files. The five Handshake job excel files were originally created by the Career Center at Whitman School of Management and sent out to all Whitman students via email.</p>
+<p>The Indeed job data are collected from <a href="http://www.indeed.com">www.indeed.com</a> through web scraping on April 26. Two datasets were created for two types of jobs. The Data.csv dataset has job data on data scientists positions. It has 1310 rows and 8 columns. The Business.csv dataset has job data on the business analyst/intelligence position. It contains 1289 rows and 8 columns.</p>
+<h3 id="data-analysis">Data Analysis:</h3>
+<h4 id="1-handshake">1. Handshake</h4>
+<ul>
+<li><b>Geographic Distribution</b></li>
+</ul>
+<p>The working location of the majority of Business Analytics and Data Scientist related jobs are in the United States. Only 8 of them located in foreign countries. For jobs located in the U.S, around 25% of them located in New York State while around 10% of them located in California. District of Columbia, New Jersey, and Massachusetts ranked 3rd, 4th, and 5th respectively.</p>
+<p><figure>
+    <img src="https://i.ibb.co/rykYhxw/Screen-Shot-2020-12-22-at-12-42-08-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/1K51ZhW/Screen-Shot-2020-12-22-at-12-42-55-PM.png"/> 
+</figure>
+</p>
+<ul>
+<li><b>Job and Employment Type</b></li>
+</ul>
+<p>The five types of jobs in the handshake dataset are “Job”, “Internship”, “Fellowship”, “Volunteer”, and “On Campus Student Employment”. Regular jobs account for around 64.9 % of the total while internships account for around 30.7% of the total. The rest three categories combined takes up below 5% of the total. Part-time and Full-Time are the two employment types in this dataset. As shown by the graph, the number of full-time employment accounts for as high as 96.2% of total jobs while that of part-time employment is around 3.84%.</p>
+<figure>
+    <img src="https://i.ibb.co/JCYw9F9/Screen-Shot-2020-12-22-at-12-43-36-PM.png"/> 
+</figure>
+
+<ul>
+<li><b>Accept OPT/CPT Candidates </b></li>
+</ul>
+<p>Around 28.2% of employers indicate that they are willing to accept OPT or CPT candidates when they post jobs on Handshake. The rest of the employers didn’t reveal their willingness to take OPT/CPT candidates. Compared to 28.2% chances to find an employer willing to accept OPT/CPT candidate, only 17.7% of the employers indicate that they are willing to sponsor a candidate.</p>
+<figure>
+    <img src="https://i.ibb.co/NgRx0Rz/Screen-Shot-2020-12-22-at-12-51-30-PM.png"/> 
+</figure>
+
+<ul>
+<li><b>Expires</b></li>
+</ul>
+<p>In this part, we will extracted months and weekdays from the expires date column and added them as two new columns to the data frame. Grouped the data frame by “month” and “weekday” and then count the number of titles (equivalent to the number of jobs). Through visualization, we found the Friday, Saturday, and Monday have the greatest number of job expires. However, when we looked into the weekdays in different months, this conclusion isn’t appliable. One of the possible reasons is that the amount and the length of data collected by the career center varies from month to month. Or, it could simply be that there is no pattern on job expiration dates.</p>
+<p><figure>
+    <img src="https://i.ibb.co/VL1RNgJ/Screen-Shot-2020-12-22-at-12-44-34-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/zm1GvbN/Screen-Shot-2020-12-22-at-12-45-02-PM.png"/> 
+</figure>
+</p>
+<h4 id="2-indeed">2. Indeed</h4>
+<ul>
+<li><b>Geographic Distribution</b></li>
+</ul>
+<p>When we conduct a job search, if we can have a general understanding of the geographical distribution of our ideal job, such as which regions have more demand for such jobs, so we can narrow the search scope and improve the success rate. It’s obvious that for the data scientist position, most jobs are located in the western region, such as CA, DC. While, business analyst/intelligence are mostly located in the eastern region, such as NY. And the distribution of business analyst/intelligence is relatively balanced. Also, we can see a lot of jobs required to work remotely. This also confirms our conjecture that business-related positions will be more concentrated in the eastern region, such as New York, and more technical positions will be more concentrated in the western region, such as California.</p>
+<p>Compared with the job location distribution results of Hankshake, we found that the result of Handshake is similar to the results of BA/BI. So, we can also find that there may be more business-related positions on the handshake website.</p>
+<p><figure>
+    <img src="https://i.ibb.co/Bw1xr1X/Screen-Shot-2020-12-22-at-12-52-03-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/6rWx8bs/Screen-Shot-2020-12-22-at-12-52-34-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/GpgNVGK/Screen-Shot-2020-12-22-at-12-53-07-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/Fqd2jQP/Screen-Shot-2020-12-22-at-12-53-29-PM.png"/> 
+</figure>
+</p>
+<ul>
+<li><b>Preferenced Skills</b></li>
+</ul>
+<p>When planning a career, it is especially important to understand what skills are required for the job after the career goals are determined. Because nowadays, many companies will conduct keyword analysis when selecting resumes. So, choosing the right skills to learn can be considered the first step in a successful career plan. We have 1310 data for data scientist positions and 1289 data for business analyst/intelligence. From the chart above we are surprised to find no matter for DA or BA, almost every position requires R and C. At the same time, AI also has great demand. For DA positions, companies are more likely to want job seekers to master the programming software and skills, like Python, Java, machine learning, etc. For BA/BI positions, analytical tools and skills like MS Excel, Tableau, Power BI, etc. are more required.</p>
+<p><figure>
+    <img src="https://i.ibb.co/N1SMzMw/Screen-Shot-2020-12-22-at-12-54-32-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/DtDbL9W/Screen-Shot-2020-12-22-at-12-54-05-PM.png"/> 
+</figure>
+</p>
+<ul>
+<li><b>Job Description</b></li>
+</ul>
+<p>The aim of making the word cloud is to give a direct understanding of job description, which words are frequently used, what skills are usually required, etc. From the image above, machine learning, mathematics statistics, computer science, experience, master degree, advanced analytics, etc. are often occurring in the DA job description. Communication, project management, power bi, data analysis, etc. are often used in BA/BI job description.</p>
+<p><figure>
+    <img src="https://i.ibb.co/ZYwtWPd/Screen-Shot-2020-12-17-at-12-38-15-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/HhTVyTD/Screen-Shot-2020-12-17-at-12-37-23-PM.png"/> 
+</figure>
+</p>
+<h3 id="conclusion">Conclusion:</h3>
+<p>According to the above analysis results, part of the results are in line with our previous conjectures. Generally, for students who want to be data scientists, they can target the states of CA, WA, VA, and focus on improving machine learning such as java, python, ai, etc. Students looking for business direction can pay more attention to the states in NY, MO, CA, and develop skills in analytical tools such as excel and power bi.</p>
+<p>Certain results are unexpected. For instance, regardless of the types of positions, companies generally expect jobseekers to master languages ​​such as r and c. Or, companies usually hope that job seekers have some work experience. Therefore, students are highly advised to find summer internships to increase their work experience and industry knowledge. If possible, they should highlight their years of experience in their resumes to receive more attention from recruiters.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://jennybb.github.io/jenny_portfolio" >
+    &copy;  Jianing Cao 2021 
+  </a>
+    <div>
+
+
+
+
+
+<a href="https://www.instagram.com/jenny_cao__/" target="_blank" class="link-transition instagram link dib z-999 pt3 pt0-l mr1" title="Instagram link" rel="noopener" aria-label="follow on Instagram——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.linkedin.com/in/jianing-cao" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/jennybb" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://jennybb.github.io/jenny_portfolio/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

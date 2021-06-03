@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Southeast Airlines Customer Satisfaction Survey Analysis | Jianing Cao</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="R | Linear Regression | Sentiment Analysis | SVM | Association Rules">
+    <meta name="generator" content="Hugo 0.79.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://jennybb.github.io/jenny_portfolio/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Southeast Airlines Customer Satisfaction Survey Analysis" />
+<meta property="og:description" content="R | Linear Regression | Sentiment Analysis | SVM | Association Rules" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jennybb.github.io/jenny_portfolio/post/southern-airline/" />
+<meta property="article:published_time" content="2019-12-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-12T00:00:00+00:00" />
+<meta itemprop="name" content="Southeast Airlines Customer Satisfaction Survey Analysis">
+<meta itemprop="description" content="R | Linear Regression | Sentiment Analysis | SVM | Association Rules">
+<meta itemprop="datePublished" content="2019-12-12T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-12-12T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2059">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Southeast Airlines Customer Satisfaction Survey Analysis"/>
+<meta name="twitter:description" content="R | Linear Regression | Sentiment Analysis | SVM | Association Rules"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://simpleflying.com/wp-content/uploads/2020/02/GettyImages-613951930.jpg');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://jennybb.github.io/jenny_portfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Jianing Cao
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/contact/" title="CONTACT page">
+              CONTACT
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/about/" title="MORE ABOUT ME page">
+              MORE ABOUT ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://jennybb.github.io/jenny_portfolio/post/" title="PROJECTS page">
+              PROJECTS
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+<a href="https://www.instagram.com/jenny_cao__/" target="_blank" class="link-transition instagram link dib z-999 pt3 pt0-l mr1" title="Instagram link" rel="noopener" aria-label="follow on Instagram——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.linkedin.com/in/jianing-cao" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/jennybb" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Southeast Airlines Customer Satisfaction Survey Analysis</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              R | Linear Regression | Sentiment Analysis | SVM | Association Rules
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw9 center ph6">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+  
+
+
+      <h1 class="f1 athelas mt3 mb1">Southeast Airlines Customer Satisfaction Survey Analysis</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-12-12T00:00:00Z">December 12, 2019</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-three-thirds-l"><p></br></br></p>
+<p>The project is based on customer survey results for Southeast Airlines and seeks to raise the Likelihood to Recommend score of the airline. The project dataset includes 10,282 observations and 32 variables. Primary goal is to increase NPS score using various attributes provided by the airlines and understand what features translate most towards gaining better recommendation scores. Additionally, we provide actionable data-driven recommendations to increase the Likelihood to Recommend, based on our findings.</p>
+<p></br></br></p>
+<h3 id="eda">EDA</h3>
+<p>In this part, we will do some visualization for some categories.</p>
+<ul>
+<li>
+<p>This graph shows the likelihood distribution of Cheapseats Airline Inc. The number of likelihood from 1 to 10 is 23, 140, 306, 916, 590, 1122, 2548, 2520, 3501, and 3090. Therefore, the number of promoters is 6591.<br />
+<figure>
+    <img src="https://i.ibb.co/nCfkttz/Screen-Shot-2020-12-22-at-5-31-31-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>This graph shows the distribution of likelihood of business type of cheapseats airline inc. The counts of each likelihood is 7, 34, 60, 236, 160, 510, 1491, 1888, 2916 and 2810. So the promoters counts is 5726 and the proportion is 56.63%. It seems like a person who is on a business type of travel is more likely to recommend the airline to others.<br />
+<figure>
+    <img src="https://i.ibb.co/87dVy7D/Screen-Shot-2020-12-22-at-5-33-02-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>This graph shows the distribution of personal type of travel and the counts of each category is 14, 106, 240, 676, 395, 432, 819, 432, 153 and 100. The number of promoters is 253 which occupies 7.51%. Therefore, we prefer to only focus on the people going on a business type of travel.<br />
+<figure>
+    <img src="https://i.ibb.co/Mgnwzbd/Screen-Shot-2020-12-22-at-5-33-52-PM.png"/> 
+</figure>
+</p>
+</li>
+</ul>
+<p></br></br></p>
+<h3 id="modeling-techniques">Modeling Techniques</h3>
+<h4 id="1-linear-regression">1. Linear Regression</h4>
+<p>Linear regression models were created to understand the features that were most impacting the Likelihood to recommend variable in a positive or negative way.This was done to understand what were the possible conditions and scenarios were the customer would give a high/low recommendation score. Further, this analysis was used to check if these intermediate variables were affected by any other variables.<br />
+Primarily, models were created on filtered dataset of 2000 customers roughly, which consisted of ‘Eco’ &amp; ‘Business’ class customers who were traveling for Personal or Business reasons using FlyToSun Airlines/FlyFast Airways/Oursin Airlines &amp; travelers of status blue/silver/gold. These variables were selected based on initial linear model. Below is a summary snippet of the created model on filtered data:<br />
+<figure>
+    <img src="https://i.ibb.co/H4Lxcrd/Screen-Shot-2020-12-22-at-2-28-34-PM.png"/> 
+</figure>
+<br />
+These models and variables were further explored by visualizing them using <b>ggplot</b>.<br />
+This was done to better understand the trend for the given parameters. Coefficients could have been used but plots are much better to grasp the information.</p>
+<ul>
+<li>
+<p>Airline Status: Silver status customers are the ones to boost the Likelihood to recommend,followed by gold,blue,platinum status customers. Each tuple of 3 silver status customers boosts the net recommendation score by 4 as compared to gold and blue status customers.<br />
+<figure>
+    <img src="https://i.ibb.co/BGFzdX6/Screen-Shot-2020-12-22-at-2-30-44-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>AGE: As the age increases, a customer tends to give negative recommendation score(every 10 years bring 5% lower recommendation score)<br />
+<figure>
+    <img src="https://i.ibb.co/fksHvDj/Screen-Shot-2020-12-22-at-2-31-59-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Gender: Males tend to give better recommendation scores<br />
+<figure>
+    <img src="https://i.ibb.co/BrH4ChJ/Screen-Shot-2020-12-22-at-2-32-37-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Flights per year: As the number of flights taken by a customer in a year increase, for each extra flight customers tend to give 0.1% lower recommendation scores.<br />
+<figure>
+    <img src="https://i.ibb.co/5cCMW22/Screen-Shot-2020-12-22-at-2-34-44-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Eating &amp; drinking at the airport: Customers who eat &amp; drink at the airport tend to give positive recommendations. Each 100$ spent on eating &amp; drinking at the airport translates to increased 4% recommendation score<br />
+<figure>
+    <img src="https://i.ibb.co/qjXXYG8/Screen-Shot-2020-12-22-at-2-35-17-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Shopping at the airport: More the amount spent at the airport on shopping better the recommendation score. Each 100$ spent on shopping translates to increased 1% recommendation score<br />
+<figure>
+    <img src="https://i.ibb.co/3SzBpNk/Screen-Shot-2020-12-22-at-2-35-51-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Arrival delay: Every hour of delay during arrival brings down recommendation score by 2.4%<br />
+<figure>
+    <img src="https://i.ibb.co/wYDZc2k/Screen-Shot-2020-12-22-at-2-36-18-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Type of travel: Customers traveling for personal work tend to give a negative 2.58 as compared to customers traveling for business reasons. The below graph shows average recommendation scores for each type of travel considered.<br />
+<figure>
+    <img src="https://i.ibb.co/bPQ8Lpj/Screen-Shot-2020-12-22-at-2-37-18-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Loyalty: Overall Loyal customers tend to give better recommendation scores.<br />
+<figure>
+    <img src="https://i.ibb.co/D486tYF/Screen-Shot-2020-12-22-at-2-38-00-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Top 3 airlines which had maximum customers were analyzed to understand the mass behaviour of customers:<br />
+<figure>
+    <img src="https://i.ibb.co/bFW1wB1/Screen-Shot-2020-12-22-at-2-38-34-PM.png"/> 
+</figure>
+</p>
+</li>
+</ul>
+<p><b>Recommendations based on Linear Regression</b></p>
+<ol>
+<li>Higher the age lower the score, this might be resolved if travelers of old age are provided better resting facilities at the airport and better entertainment during the flight.</li>
+<li>Increased number of flights lowers the score, which suggests that these customers are not happy but are still traveling anyways. Here the airline needs to give some kind of loyalty points to the more frequently flying customers, for a better recommendation score.</li>
+<li>If customers are given food options through coupons/points before &amp; after flight then it might save food costs for the airlines for short flights, if the airlines can manage to cut off the food and just partner with other food services at the airport. This way the airline might still get a good recommendation score at lower costs.</li>
+<li>If customers are given more options to shop at the airport via booked tickets through expiring coupons for next time it might increase the NPS and customer loyalty and still might be good for airlines if the customer is not a frequent flyer.</li>
+</ol>
+<p><br></br></p>
+<h4 id="2-sentiment-analysis">2. Sentiment Analysis</h4>
+<ul>
+<li><b>Word Cloud</b><br />
+This model is to analyze the entire customers who provided comments (free text) with likelihood less than 7 to see what caused this issue, and compare with the previous sentiment analysis to determine our insights.<br />
+<figure>
+    <img src="https://i.ibb.co/tY68Y6r/Screen-Shot-2020-12-22-at-2-50-35-PM.png"/> 
+</figure>
+<br />
+This graph is  based on the entire customer reviews with the likelihood to recommend less than 7 in order to find what are the most frequently used words the customers concerned. And finally, we decided to focus on the word - services. According to our result of head command and word cloud, we found the word service is  the most appeared word in these three partners’ comments. Since we already knew female passengers are more sensitive to price, so we will then created the SVM models based on each of the three companies with the results of sentiment analysis to see what type of female passengers these three partners should focus on and provide better services.</li>
+</ul>
+<p><br></br></p>
+<h4 id="3-association-rules">3. Association Rules</h4>
+<p>A support vector machine model (SVM) designed to combine with and support the results of our sentiment analysis.<br />
+<figure>
+    <img src="https://i.ibb.co/R0q2K0j/Screen-Shot-2020-12-22-at-4-28-18-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/nr5tfGq/Screen-Shot-2020-12-22-at-4-31-00-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/Mf3nhtP/Screen-Shot-2020-12-22-at-4-36-05-PM.png"/> 
+</figure>
+</p>
+<p>After determining what the most significant factors are with respect to the Likelihood to Recommend, we decided to validate the findings through Association Rules. Additionally, in this model, we removed factors like Age and Gender to focus on which variables SouthEast can control or facilitate. The specific variables used were: Price Sensitivity, Loyalty, Shopping Amount, Eating and Drinking Amount, Departure Delay, Arrival Delay, and Likelihood to Recommend.<br />
+The outcome of the association rules were used in addition to validate, to determine which variables are strongly associated with giving a higher/lower NPS.<br />
+Before running the Association Rules on the CheapSeats, FlyFast, and OursInAir partners, the data was further prepared by creating breaks by grouping values. For example, the Likelihood to Recommend values were converted from anything below 7 to 0, and anything 7 and above as 1. This means a 0 value indicates a poor Likelihood to Recommend score, while a 1 is acceptable. The Loyalty values were converted to anything 0 and below to 0, and anything above 0 to 1. The Shopping Amount at Airport and Eating and Drinking at Airport values were converted from $0 spent to 0, $1-25 spent to 1, $26-50 spent to 2, $51 - 100 spent to 3, $101 - 200 spent to 4, $201 - 300 spent to 5, and $301+ spent to 6. The Arrival and Departure delay values were converted from 0 minute delay to 0, 1-25 minute delay to 1, 26-50 minute delay to 2, 51 - 100 minute delay to 3, 101 - 200 minute delay to 4, and 201+ minute delay to 5. The Price Sensitivity values were converted from 0-2 to 1, and 3-5 to 0. Afterwards, each column was converted to a factor, using the “as.factor,” function to create the Association Rules.<br />
+<figure>
+    <img src="https://i.ibb.co/C047DdS/Screen-Shot-2020-12-22-at-4-45-02-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/RD1G2fL/Screen-Shot-2020-12-22-at-4-46-17-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/HdsVRt7/Screen-Shot-2020-12-22-at-4-47-58-PM.png"/> 
+</figure>
+</p>
+<p>Based on the outcomes, we felt our findings from previous models were sufficiently validated. Additionally, we observed a consumer behavior trend between the 3 airline partners. According to the apriori outputs, customers of the airline partners tend to spend money on eating and drinking, as well as shopping in the airport. Furthermore, the outputs indicate loyal customers are more likely to give a higher Likelihood to Recommend score, while the inverse is true.</p>
+<p>The outcome of the association rules that were based on the significant variables that SouthEast can control or facilitate indicated loyalty to the airline was the determining factor in whether a high or low NPS was received. The Association Rules algorithm was used on the three airline partners (cheapSeats, flyFast, oursinAir) that were identified as underperformers. We observed a similar pattern throughout the three airlines. Based on the code provided, we observed that the following attributes were most associated with receiving a higher NPS:</p>
+<ul>
+<li>Loyal to the airline</li>
+<li>Not sensitive to pricing</li>
+<li>Spends $51-100 on eating and drinking</li>
+<li>Spends $26-50 on shopping</li>
+<li>At most a 25-minute departure delay<br />
+Additionally, we observed the following attributes were most associated with receiving a lower NPS:</li>
+<li>Not loyal to the airline</li>
+<li>Spends $26-50 on eating and drinking</li>
+<li>Spends $26-50 on shopping</li>
+<li>Arrived at destination at least 26 minutes late<br />
+Based on these findings, we understand that individuals are more likely to spend money on food and shopping, while loyalty and arrival delay are the attributes that may determine a high or low NPS.</li>
+</ul>
+<p></br></br></p>
+<h3 id="business-questions">Business Questions</h3>
+<ul>
+<li>
+<p><b>Why CheapSeats, FlyFast and OursinAir?</b><br />
+The graph below depicts the average customer satisfaction ratings of all partners (Black solid horizontal line) VS. each partner’s average customer satisfaction ratings. The three airlines - CheapSeats, FlyFast and OursinAir have average of Likelihood to Recommend score below the combined average of all partners. Therefore, we chose to focus on these three airlines.<br />
+<figure>
+    <img src="https://i.ibb.co/ySMPcPt/Screen-Shot-2020-12-22-at-4-51-32-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p><b>Is there a gender bias in customer satisfaction ratings?</b><br />
+Yes, according to the overall statistics for gender and their respective average of Likelihood to Recommend score; we can see that Females tend to give a lower score.<br />
+<figure>
+    <img src="https://i.ibb.co/M9MxZFV/Screen-Shot-2020-12-22-at-4-53-30-PM.png"/> 
+</figure>
+<br />
+Even when we individually check average of Likelihood to recommend for CheapSeats, OursinAir and FlyFast, we can see the gender bias.<br />
+<figure>
+    <img src="https://i.ibb.co/fCFFzc2/Screen-Shot-2020-12-22-at-5-00-44-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p><b>Is age a factor in higher or lower customer satisfaction ratings for CheapSeats customers?</b><br />
+Yes, age affects customer satisfaction ratings for CheapSeats passengers. As we can observe, as Age goes over 60, average customer satisfaction rating starts decreasing (changes to a darker shade of blue).<br />
+<figure>
+    <img src="https://i.ibb.co/VTk4T3v/Screen-Shot-2020-12-22-at-5-02-07-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p><b>Is Airline Status a factor in higher or lower customer satisfaction ratings?</b><br />
+Yes, Blue customers give the least Likelihood to Recommend score; whereas, Silver customers tend to give highest Likelihood to Recommend score.<br />
+<figure>
+    <img src="https://i.ibb.co/sHTCK36/Screen-Shot-2020-12-22-at-5-06-05-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p><b>What is the most frequent reason for travel for our customers?</b><br />
+Most of our travelers travel for business purposes.<br />
+<figure>
+    <img src="https://i.ibb.co/HnhN7g1/Screen-Shot-2020-12-22-at-5-05-04-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p><b>Does reason for travel (type of travel) affect customer satisfaction ratings?</b><br />
+Yes, Business travelers tend to give highest ratings. Whereas, travelers traveling for personal reasons give comparatively very low satisfaction ratings.<br />
+<figure>
+    <img src="https://i.ibb.co/cbkS1GJ/Screen-Shot-2020-12-22-at-5-07-26-PM.png"/> 
+</figure>
+</p>
+</li>
+<li>
+<p><b>Does Class of travel affect customer satisfaction ratings?</b><br />
+Business class travelers give highest customer satisfaction rating.<br />
+<figure>
+    <img src="https://i.ibb.co/rc5gyp3/Screen-Shot-2020-12-22-at-5-08-40-PM.png"/> 
+</figure>
+</p>
+</li>
+</ul>
+<p></br></br></p>
+<h3 id="recommendations">Recommendations</h3>
+<p>From the findings of the association rules, we can produce two recommendations to increase loyalty and to ease price sensitivity on consumers.</p>
+<p><ins>Coupon-Based Approach</ins><br />
+Customers tend to spend money on food and drink, as well as shopping at the airport before their flight. It would be beneficial to partner with restaurants and stores in the airport to offer customers coupons during the purchasing phase to these selected restaurants and stores. There is a low switching cost between Southeast and competitors. By providing customers with in-airport discounts, we may lock-in customers and in return boost the NPS.</p>
+<p><ins>Revamping Loyalty Program</ins><br />
+Based on the Project Overview document, we understand the current SouthEast Airlines Loyalty program is not as effective as it can be. Additionally, our findings indicate that customers that are identified as a “Blue”, or entry level airline status, are more likely to give a lower NPS. To combat a lower NPS from this customer segment, it would be beneficial to revamp the current loyalty program. Southeast needs to rethink how it values its customers, and may do that by expanding the loyalty program to outside of the airport. Southeast may partner with credit card companies, restaurants, and stores to provide customers with loyalty points with select purchases outside of the airport. This will allow customers to build loyalty points on their daily transactions, gain a higher airline status above “Blue,” and use the loyalty points towards the cost of their airline ticket. This will lock-in customers as the loyalty program in more encompassing and ultimately boost the NPS.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://jennybb.github.io/jenny_portfolio" >
+    &copy;  Jianing Cao 2021 
+  </a>
+    <div>
+
+
+
+
+
+<a href="https://www.instagram.com/jenny_cao__/" target="_blank" class="link-transition instagram link dib z-999 pt3 pt0-l mr1" title="Instagram link" rel="noopener" aria-label="follow on Instagram——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.271,26.578v-0.006c0.502,0,1.005,0.01,1.508-0.002  c0.646-0.017,1.172-0.57,1.172-1.217c0-0.963,0-1.927,0-2.89c0-0.691-0.547-1.24-1.236-1.241c-0.961,0-1.922-0.001-2.883,0  c-0.688,0.001-1.236,0.552-1.236,1.243c-0.001,0.955-0.004,1.91,0.003,2.865c0.001,0.143,0.028,0.291,0.073,0.426  c0.173,0.508,0.639,0.82,1.209,0.823C41.344,26.579,41.808,26.578,42.271,26.578z M33,27.817c-3.384-0.002-6.135,2.721-6.182,6.089  c-0.049,3.46,2.72,6.201,6.04,6.272c3.454,0.074,6.248-2.686,6.321-6.043C39.254,30.675,36.462,27.815,33,27.817z M21.046,31.116  v0.082c0,4.515-0.001,9.03,0,13.545c0,0.649,0.562,1.208,1.212,1.208c7.16,0.001,14.319,0.001,21.479,0  c0.656,0,1.215-0.557,1.215-1.212c0.001-4.509,0-9.02,0-13.528v-0.094h-2.912c0.411,1.313,0.537,2.651,0.376,4.014  c-0.161,1.363-0.601,2.631-1.316,3.803s-1.644,2.145-2.779,2.918c-2.944,2.006-6.821,2.182-9.946,0.428  c-1.579-0.885-2.819-2.12-3.685-3.713c-1.289-2.373-1.495-4.865-0.739-7.451C22.983,31.116,22.021,31.116,21.046,31.116z   M45.205,49.255c0.159-0.026,0.318-0.049,0.475-0.083c1.246-0.265,2.264-1.304,2.508-2.557c0.025-0.137,0.045-0.273,0.067-0.409  V21.794c-0.021-0.133-0.04-0.268-0.065-0.401c-0.268-1.367-1.396-2.428-2.78-2.618c-0.058-0.007-0.113-0.02-0.17-0.03H20.761  c-0.147,0.027-0.296,0.047-0.441,0.08c-1.352,0.308-2.352,1.396-2.545,2.766c-0.008,0.057-0.02,0.114-0.029,0.171V46.24  c0.028,0.154,0.05,0.311,0.085,0.465c0.299,1.322,1.427,2.347,2.77,2.52c0.064,0.008,0.13,0.021,0.195,0.03H45.205z M33,64  C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+<a href="https://www.linkedin.com/in/jianing-cao" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/jennybb" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://jennybb.github.io/jenny_portfolio/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
