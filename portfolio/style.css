@@ -1,0 +1,119 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+}
+
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+h1 {
+    position: relative;
+}
+
+.selection {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.selection .option:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.selection .dot {
+    width: 0.5vw;
+}
+
+.image-container {
+    margin: 2vw 0;
+    position: relative;
+}
+
+.image-container .row {
+    flex: 0 0 calc(30% - 10px);
+    margin: 1vw;
+    background-image: url("pic.nosync/t1.png");
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5vw;
+}
+
+.image-container .image {
+    position: relative;
+}
+
+.image-container img {
+    width: 21vw;
+    height: 22vh;
+    margin: 0.5vw;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.image-container .image:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+/* Apply hover effect only to images that belong to the selected category */
+/* .image-container[data-category="Show All"] .image:hover .overlay,
+.image-container[data-category="DataViz"] .image[data-category*="DataViz"]:hover .overlay,
+.image-container[data-category="Dashboard"] .image[data-category*="Dashboard"]:hover .overlay,
+.image-container[data-category="Website"] .image[data-category*="Website"]:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.image-container[data-category="Show All"] .image .overlay,
+.image-container[data-category="DataViz"] .image:not([data-category*="DataViz"]) .overlay,
+.image-container[data-category="Dashboard"] .image:not([data-category*="Dashboard"]) .overlay,
+.image-container[data-category="Website"] .image:not([data-category*="Website"]) .overlay {
+    opacity: 0;
+} */
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.75); /* Adjust the transparency as needed */
+    color: #fff;
+    transition: opacity 0.3s ease;
+}
+
+.overlay h4 {
+    color: white;
+    font-size: 1.5vw;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 2vw;
+}
+
+.overlay p {
+    margin: 1.5vh 1vw;
+}
+
+.overlay a {
+    text-decoration: none;
+    color: inherit;
+}

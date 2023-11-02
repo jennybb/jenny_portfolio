@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Visualization Portfolio</title>
+</head>
+
+<body>
+    <video playsinline autoplay muted loop poster="" id="bgvid">
+        <source src="pic.nosync/bg1.mp4" type="video/mp4">
+    </video>
+
+    <h1>Portfolio</h1>
+
+    <div class="selection">
+        <div class="selection option" onclick="showAll()" style="text-decoration: underline;">Show All</div>
+        <div class="dot">&#183;</div>
+        <div class="selection option" onclick="showCategory('DataViz')">DataViz</div>
+        <div class="dot">&#183;</div>
+        <div class="selection option" onclick="showCategory('Dashboard')">Dashboard</div>
+        <div class="dot">&#183;</div>
+        <div class="selection option" onclick="showCategory('Website')">Website</div>
+    </div>
+
+    <div class="image-container">
+        <div class="row">
+            <div class="image" data-category="DataViz Dashboard"
+                data-link="https://public.tableau.com/app/profile/jenny.cao/viz/IndeedJobAnalysis/JobAnalysis">
+                <a href="https://public.tableau.com/app/profile/jenny.cao/viz/IndeedJobAnalysis/JobAnalysis">
+                    <img src="pic.nosync/indeed.png">
+                    <div class="overlay">
+                        <h4>Indeed Job Analysis</h4>
+                        <p>Using Python and Tableau to create a report on data analyst/scientist job market</p>
+                    </div>
+                </a>
+            </div>
+            <div class="image" data-category="Website"
+                data-link="https://jenny-ryan.github.io/Ryan-Jenny-Wedding/index.html">
+                <a href="https://jenny-ryan.github.io/Ryan-Jenny-Wedding/index.html">
+                    <img src="pic.nosync/wedding.png">
+                    <div class="overlay">
+                        <h4>Wedding Website</h4>
+                        <p>A wedding page to show our story and the upcoming information (HTML, CSS)</p>
+                    </div>
+                </a>
+            </div>
+            <div class="image" data-category="Website" data-link="https://telcom-customer-churn-project.herokuapp.com/">
+                <a href="https://telcom-customer-churn-project.herokuapp.com/">
+                    <img src="pic.nosync/churnW.png">
+                    <div class="overlay">
+                        <h4>Telecom Churn Prediction - Web Application</h4>
+                        <p>An interactive web application to demonstrate a machine learning project for telecom customer
+                            churn prediction</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="image" data-category="Website" data-link="https://jennybb.github.io/jenny_portfolio/">
+                <a href="https://jennybb.github.io/jenny_portfolio/">
+                    <img src="pic.nosync/port.png">
+                    <div class="overlay">
+                        <h4>Personal Portfolio</h4>
+                        <p>An online personal site</p>
+                    </div>
+                </a>
+            </div>
+            <div class="image" data-category="DataViz Dashboard"
+                data-link="https://public.tableau.com/app/profile/jenny.cao/viz/JustiaAnalysis/justiaanalysis">
+                <a href="https://public.tableau.com/app/profile/jenny.cao/viz/JustiaAnalysis/justiaanalysis">
+                    <img src="pic.nosync/justia.png">
+                    <div class="overlay">
+                        <h4>Justia Analysis</h4>
+                        <p>Trademark litigation analysis using Justia.com data</p>
+                    </div>
+                </a>
+            </div>
+            <div class="image" data-category="DataViz" data-link="churn.html">
+                <a href="churn.html">
+                    <img src="pic.nosync/churn.png">
+                    <div class="overlay">
+                        <h4>Telecom Churn Prediction - Poster</h4>
+                        <p>A report to demonstrate a machine learning project process for telecom customer churn
+                            prediction
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="image" data-category="DataViz Dashboard"
+                data-link="https://public.tableau.com/app/profile/jenny.cao/viz/AnnualBusinessSurveyABSReport-2017/AnnualBusinessSurveyABSReport-2017">
+                <a
+                    href="https://public.tableau.com/app/profile/jenny.cao/viz/AnnualBusinessSurveyABSReport-2017/AnnualBusinessSurveyABSReport-2017">
+                    <img src="pic.nosync/ABSreport.png">
+                    <div class="overlay">
+                        <h4>Annual Business Survey Report</h4>
+                        <p>Interactive tool to explore the clients who finished business survey</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="image" data-category="DataViz Dashboard"
+                data-link="https://public.tableau.com/app/profile/jenny.cao/viz/CompanyClientsGeneral/Dashboard">
+                <a href="https://public.tableau.com/app/profile/jenny.cao/viz/CompanyClientsGeneral/Dashboard">
+                    <img src="pic.nosync/wise.png">
+                    <div class="overlay">
+                        <h4>General Clients Report</h4>
+                        <p>An analysis on company's clients' data</p>
+                    </div>
+                </a>
+            </div>
+            <div class="image" data-category="DataViz" data-link="stream.html">
+                <a href="stream.html">
+                    <img src="pic.nosync/stream.png">
+                    <div class="overlay">
+                        <h4>Streaming Platform Report</h4>
+                        <p>Explore the distribution of shows/movies on different streaming platform</p>
+                    </div>
+                </a>
+            </div>
+            <div class="image" data-category="Website" data-link="https://ryanondocin.com/">
+                <a href="https://ryanondocin.com/">
+                    <img src="pic.nosync/ryan.png">
+                    <div class="overlay">
+                        <h4>Ryan Personal Website</h4>
+                        <p>Personal independent website design</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
